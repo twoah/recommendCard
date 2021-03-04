@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PerformMapper">
+	<!-- 카드별/월별 카테고리 실적 합산 조회 -->
+	<select id="performListByCategory" resultType="Perform">
+		select
+		card_num,
+		category_id, 
+		ifnull(sum(category_perform),0) as category_sum
+		from perform
+		where
+		MONTH(now())-1 = MONTH(paytime)
+		and card_num
+		in (select card_num from
+		user_card where user_id = #{user_id})
+		group by
+		category_id order by category_sum desc;
+	</select>
+
+	<!-- 사용자별 전체 실적 조회 -->
+	<select id="performListByAll" resultType="Perform">
+		select
+		card_num, category_id, category_perform, paytime
+		from perform
+		where
+		<choose>
+			<when test="paytime != null">
+				month(#{paytime}) = month(paytime) and
+				year(#{paytime}) = year(paytime) and
+			</when>
+			<otherwise>
+				month(now())-1 = month(paytime) and
+				year(now()) and year(paytime)
+			</otherwise>
+		</choose>
+		card_num
+		in (select card_num from user_card where user_id =
+		#{user_id}) order by paytime desc;
+	</select>
+
+	<!-- 사용자 카드별 실적 조회 -->
+	<select id="performListByDate" resultType="Perform">
+		select
+		card_num,
+		category_id,
+		category_perform,
+		paytime
+		from perform
+		where
+		<choose>
+			<when test="paytime != null">
+				month(#{paytime}) = month(paytime) and
+				year(#{paytime}) = year(paytime) and
+			</when>
+			<otherwise>
+				MONTH(now())-1 = MONTH(paytime) and
+			</otherwise>
+		</choose>
+		card_num = (select card_num from user_card where card_name=
+		#{card_name} and user_id = #{user_id}) order by paytime desc;
+	</select>
+	
+	
+	<select id="selectCardSumByCardnum" parameterType="String" resultType="int">
+		select
+		ifnull(sum(category_perform),0) as sum
+		from perform
+		where
+		MONTH(now())-1 = MONTH(paytime) 
+		and card_num = #{card_num};
+	</select>
+	
+	<select id="selectLastPayTimeByCardnum" parameterType="String" resultType="String">
+		select
+		paytime
+		from perform
+		where card_num = #{card_num} and
+		MONTH(now())-1 = MONTH(paytime)
+		order by paytime desc limit 1;
+	</select>
+
+	<select id="performListByCardname" resultType="Perform">
+		select
+		card_num, category_id, category_perform, paytime
+		from perform
+		where
+		<choose>
+			<when test="paytime != null">
+				month(#{paytime}) = month(paytime) and
+				year(#{paytime}) = year(paytime) and
+			</when>
+			<otherwise>
+				month(now())-1 = month(paytime) and
+			</otherwise>
+		</choose>
+		card_num = #{card_num} order by paytime desc;
+		
+
+	</select>
+	
+
+</mapper>

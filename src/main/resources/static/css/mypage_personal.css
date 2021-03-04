@@ -1,0 +1,33 @@
+/*font*/
+@import url(//cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
+.container{
+	text-align:center;
+}
+
+/*font*/
+
+@font-face {
+    font-family:'NanumSquare', serif;
+    /* src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff'); */
+    font-weight: normal;
+    font-style: normal;
+}
+
+.personal_body_div {
+    margin-top: 3%;
+    margin-left: 100px;
+    margin-right: 50px;
+    margin-bottom: 5%;
+}
+
+.edit_personal{
+	margin-top: 5%;
+}
+
+.edit_word {
+    font-family:'NanumSquare', serif;
+    font-size: 15px;
+    float: left;
+    margin-top: 3%;
+}

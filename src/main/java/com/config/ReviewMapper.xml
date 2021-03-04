@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReviewMapper">
+
+	<select id="reviewListByCardid" parameterType="Integer" resultType="Review">
+		select
+		review_id,user_id,card_id,title,body,date,status_good,status_bad
+		from review
+		where card_id=#{card_id}
+		order by date desc;
+	</select>
+
+	<insert id="reviewWrite" parameterType="Review">
+		insert into review (user_id,card_id,body)
+		values (#{user_id}, #{card_id}, #{body})
+	</insert>
+	
+	<delete id="reviewDelete" parameterType="String">
+		delete from review where
+		review_id=#{review_id}
+	</delete>
+	
+	<update id="statusGoodcnt" parameterType="String"> update review set status_good 
+		= status_good + 1 where review_id = #{review_id} </update>
+		
+	<update id="statusBadcnt" parameterType="String"> update review set status_bad 
+		= status_bad + 1 where review_id = #{review_id} </update>
+		
+</mapper>
+
+
+
+
+
+

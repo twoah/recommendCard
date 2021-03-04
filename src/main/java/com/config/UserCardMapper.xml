@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserCardMapper">
+	<select id="usercardList" parameterType="UserCard" resultType="UserCard">
+		select 
+		user_id, card_id, card_num, card_name, withdrawal
+		from user_card
+		where user_id = #{user_id}
+	</select>
+	<select id="selectByCardid" parameterType="UserCard" resultType="UserCard">
+		select 
+		user_id, card_id, card_num, card_name, withdrawal
+		from user_card
+		where user_id = #{user_id} and card_id= #{card_id}
+	</select>
+	<select id="selectByCardname" parameterType="UserCard" resultType="UserCard">
+		select 
+		user_id, card_id, card_num, card_name, withdrawal
+		from user_card
+		where user_id = #{user_id} and card_name = #{card_name}
+	</select>	
+	
+	<insert id="insertUsercard" parameterType="UserCard">
+		insert into user_card(card_num, user_id, card_id,withdrawal,card_name) 
+		values(#{card_num},#{user_id},#{card_id},#{withdrawal},#{card_name});
+	</insert>
+	
+
+	
+</mapper>

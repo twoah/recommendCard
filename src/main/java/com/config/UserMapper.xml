@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+
+	<select id="userList" resultType="User">
+		select
+		user_id,name,pw,gender,email,account,bank,phone_num,benefit1,benefit2,benefit3,
+		date_format(join_date,'%Y-%m-%d') as join_date,
+		date_format(final_edit,'%Y-%m-%d') as final_edit,
+		withdrawal
+		from user
+	</select>
+	<select id="selectByUserid" parameterType="String"
+		resultType="User">
+		select
+		user_id,name,pw,gender,email,account,bank,phone_num,benefit1,benefit2,benefit3,
+		date_format(join_date,'%Y-%m-%d') as join_date,
+		date_format(final_edit,'%Y-%m-%d') as final_edit,
+		withdrawal
+		from user
+		where user_id=#{user_id}
+	</select>
+
+	<insert id="userWrite" parameterType="User">
+		insert into user
+		(user_id,name,pw,gender,email,account,bank,phone_num,benefit1,benefit2,benefit3,
+		join_date,
+		final_edit,
+		withdrawal)
+		values ( #{user_id}, #{name}, #{pw},
+		#{gender},#{email},#{account},#{bank},#{phone_num},#{benefit1},#{benefit2},#{benefit3}
+		,now(),now(),#{withdrawal})
+	</insert>
+
+	<update id="userUpdate" parameterType="User">
+		update user set
+		name=#{name},email=#{email},phone_num = #{phone_num}
+		where user_id=#{user_id}
+	</update>
+
+	<delete id="userDelete" parameterType="String">
+		delete from user where
+		user_id=#{user_id}
+	</delete>
+	<select id="userLogin" resultType="User">
+		select user_id,name,pw,email,phone_num,benefit1,benefit2,benefit3
+		from
+		user
+		where user_id = #{user_id} and pw = #{pw}
+	</select>
+	<select id="userIdCheck" resultType="int">
+		select count(*)
+		from user
+		where user_id = #{user_id}
+	</select>
+</mapper>
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+/*font*/
+@import url(//cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
+.container{
+	text-align:center;
+}
+
+.perform-select{
+	text-align:center;
+	margin-top: 50px;
+	width:100%;
+	height:100%;
+}
+.perform-select-div{
+	margin-left:50px;
+	margin-right:50px;
+}
+.select_box_card{
+	float:right;
+	width:50%;
+	font-size:14px;
+}
+.select_box_month{
+	float:right;
+	width:25%;
+	font-size:14px;
+
+}
+
+.select_1{
+	background-color:"#f5f5f8";
+	padding:20px;
+}
+.select_2{
+	background-color:whitesmoke;
+	padding:20px;
+}
+.user_perform_month_title{
+
+	margin-left: 50px;
+	margin-bottom: 15px;
+	font-family:'NanumSquare', serif;
+	font-size : 20px;
+	text-align : left;
+}
+
+.perform_body_div{
+	margin-top:50px;
+	margin-left: 100px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+}
+
+  .select_2_btn{
+	  margin-left:80%;
+	  align-items: right;
+  }
+  .user_perform_select{
+	margin-left: 50px;
+	margin-bottom: 15px;
+	font-family:'NanumSquare', serif;
+	font-size : 14px;
+  }
+
+table.perform_table{
+	margin-left:50px;
+}

@@ -1,0 +1,39 @@
+
+.nav .nav-item .nav-link {
+   color: black;
+}
+
+.nav .nav-item .active {
+   color: red;
+   background-color: white;
+   font-weight: bold;
+}
+
+form {
+ width: 60%;
+   margin: 0 auto;
+   padding: 60px 120px 80px 120px;
+   text-align: center;
+   border:1px solid lightgray;
+
+}
+
+
+
+button {
+   display: inline-block;
+   padding: 12px 24px;
+   background: rgb(220, 220, 220);
+   font-weight: bold;
+   color: rgb(120, 120, 120);
+   border: none;
+   outline: none;
+   border-radius: 3px;
+   cursor: pointer;
+   transition: ease .3s;
+}
+
+button:hover {
+   background: red;
+   color: white;
+}
